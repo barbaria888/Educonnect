@@ -1,1 +1,1 @@
-# Educonnect
+# EduConnect
