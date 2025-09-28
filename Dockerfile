@@ -1,19 +1,19 @@
 FROM node:18 AS builder
 WORKDIR /app
 
-COPY server ./server
-RUN cd server && npm install
+COPY backend ./backend
+RUN cd backend && npm install
 
 
-COPY client ./client
-RUN cd client && npm install && npm run build
+COPY frontend ./frontend
+RUN cd frontend && npm install && npm run build
 
 # Final image
 FROM node:18
 WORKDIR /app
-COPY server ./server
+COPY backend ./backend
 COPY --from=builder /app/client/dist ./client/dist
-RUN cd server && npm install --omit=dev
+RUN cd backend && npm install --omit=dev
 
 EXPOSE 5000
 CMD ["node", "server/index.js"]
