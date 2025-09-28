@@ -12,7 +12,7 @@ RUN cd frontend && npm install && npm run build
 FROM node:18
 WORKDIR /app
 COPY backend ./backend
-COPY --from=builder /app/client/dist ./client/dist
+COPY --from=builder /app/frontend/dist ./frontend/dist
 RUN cd backend && npm install --omit=dev
 
 EXPOSE 5000
