@@ -21,6 +21,12 @@ jobs:
           cd backend
           npm install
 
+      - name: Run linters
+        uses: wearerequired/lint-action@v2
+        with:
+          eslint: true
+          prettier: true      
+
       - name: Run Backend Tests
         run: |
           cd backend
