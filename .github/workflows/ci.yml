@@ -54,7 +54,12 @@ jobs:
           password: ${{ secrets.DOCKERHUB_PASSWORD }}
 
       - name: Build Docker Image
-        run: docker build \ --cache-from=docker.io/hardik0811/mern-app:latest \  -t docker.io/hardik0811/mern-app:latest \  .
+        run: |
+          docker pull docker.io/yourusername/mern-app:latest || true
+          docker build \
+            --cache-from=docker.io/yourusername/mern-app:latest \
+            -t docker.io/yourusername/mern-app:latest \
+            .
 
       - name: Push Docker Image
         run: docker push docker.io/hardik0811/mern-app:latest
