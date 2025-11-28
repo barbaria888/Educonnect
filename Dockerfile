@@ -9,7 +9,7 @@ COPY frontend ./frontend
 RUN cd frontend && npm install && npm run build
 
 # Final image
-FROM node:18
+FROM node:18-slim
 WORKDIR /app
 COPY backend ./backend
 COPY --from=builder /app/frontend/dist ./frontend/dist
